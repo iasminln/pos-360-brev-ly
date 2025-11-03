@@ -11,7 +11,7 @@ server.setValidatorCompiler(validatorCompiler);
 server.setSerializerCompiler(serializerCompiler);
 
 
-server.setErrorHandler((error, request, reply) => {
+server.setErrorHandler((error, _request, reply) => {
   if (hasZodFastifySchemaValidationErrors(error)) {
     return reply.status(400).send({ message: 'Validation error', issues: error.validation });
   }
@@ -21,7 +21,11 @@ server.setErrorHandler((error, request, reply) => {
 
 console.log(env.DATABASE_URL);
 
-server.register(fastifyCors, { origin: "*" });
+server.register(fastifyCors, {
+  origin: "*",
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+});
 server.register(registerRoutes);
 
 server.listen({ port: 3333, host: '0.0.0.0' }).then(() => {

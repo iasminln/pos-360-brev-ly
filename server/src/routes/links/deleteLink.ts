@@ -17,7 +17,7 @@ export const deleteLinkRoute = async (server: FastifyInstance) => {
         return reply.status(404).send({ error: 'Link não encontrado' });
       }
 
-      return reply.status(204).send();
+      return reply.status(200).send({ message: 'Link deletado com sucesso' });
     } catch (error) {
       server.log.error(error);
       return reply.status(500).send({ error: 'Erro interno do servidor' });

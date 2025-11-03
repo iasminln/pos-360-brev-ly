@@ -3,7 +3,7 @@ import { db } from '../../database/index';
 import { schema } from '../../database/schemas';
 
 export const listLinksRoute = async (server: FastifyInstance) => {
-  server.get('/links', async (request, reply) => {
+  server.get('/links', async (_request, reply) => {
     try {
       const allLinks = await db.select().from(schema.uploads).orderBy(schema.uploads.createdAt);
       return reply.send(allLinks);
