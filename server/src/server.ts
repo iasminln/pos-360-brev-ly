@@ -1,9 +1,9 @@
 import { fastify } from "fastify";
 import { fastifyCors } from "@fastify/cors";
-// import { registerRoutes } from './routes';
-import { createLinkRoute } from './routes/links/createLink';
+import { registerRoutes } from './routes';
 import { env } from './env';
 import { serializerCompiler, validatorCompiler, hasZodFastifySchemaValidationErrors } from 'fastify-type-provider-zod';
+
 
 const server = fastify();
 
@@ -22,8 +22,7 @@ server.setErrorHandler((error, request, reply) => {
 console.log(env.DATABASE_URL);
 
 server.register(fastifyCors, { origin: "*" });
-// server.register(registerRoutes);
-// server.register(createLinkRoute);
+server.register(registerRoutes);
 
 server.listen({ port: 3333, host: '0.0.0.0' }).then(() => {
   console.log(`🚀 Servidor rodando em http://0.0.0.0:3333`);
