@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Trash2, Copy, BarChart3 } from 'lucide-react';
+import { Trash2, Copy } from 'lucide-react';
 import { linkService } from '../services/api';
 import type { Link } from '../types/link';
+import { IconDownload } from '../icons/icon-download';
+import { IconLink } from '../icons/icon-link';
 
 export function LinkList() {
   const [links, setLinks] = useState<Link[]>([]);
@@ -63,12 +65,29 @@ export function LinkList() {
     }
   };
 
+  const ListLinksHeader = () => {
+    let disableButton = false;
+    if (links.length === 0 || isLoading || error) {
+      disableButton = true;
+    }
+
+    return (
+      <div className="link-list-header">
+        <h2>Meus links</h2>
+        <button className="btn btn-secondary" onClick={handleExportToCsv} disabled={disableButton}>
+          <IconDownload size={16} color="#1F2025" /> Baixar CSV
+        </button>
+      </div>
+    )
+  }
+
   if (isLoading) {
     return (
       <div className="card">
+        <ListLinksHeader />
         <div className="loading">
           <div className="spinner" />
-          <span>Carregando links...</span>
+          <span className="text-label-uppercase">Carregando links...</span>
         </div>
       </div>
     );
@@ -77,6 +96,7 @@ export function LinkList() {
   if (error) {
     return (
       <div className="card">
+        <ListLinksHeader />
         <div className="empty-state">
           <p className="error-message">{error}</p>
           <button
@@ -93,10 +113,10 @@ export function LinkList() {
   if (links.length === 0) {
     return (
       <div className="card">
+        <ListLinksHeader />
         <div className="empty-state">
-          <BarChart3 size={64} color="#9ca3af" />
-          <h3>Nenhum link criado</h3>
-          <p>Crie seu primeiro link encurtado acima!</p>
+          <IconLink size={32} color="#74798B" />
+          <p className="text-label-uppercase">Ainda não existem links cadastrados</p>
         </div>
       </div>
     );
@@ -106,10 +126,7 @@ export function LinkList() {
 
   return (
     <div className="card">
-      <div className="link-list-header">
-        <h2>Meus links</h2>
-        <button className="btn btn-secondary" onClick={handleExportToCsv}>Baixar CSV</button>
-      </div>
+      <ListLinksHeader />
 
       <div>
         {links.map((link) => (

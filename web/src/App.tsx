@@ -13,7 +13,9 @@ function App() {
   return (
     <div className="app">
       <main className="main">
-        <img src={logoBrevLy} alt="Brev.ly" className="header-logo" />
+        <div className="header">
+          <img src={logoBrevLy} alt="Brev.ly" className="logo" />
+        </div>
         <div className="main-content">
           <LinkForm onLinkCreated={handleLinkCreated} />
           <LinkList key={refreshKey} />

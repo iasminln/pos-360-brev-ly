@@ -39,7 +39,7 @@ export function LinkForm({ onLinkCreated }: LinkFormProps) {
 
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="originalUrl">
+          <label htmlFor="originalUrl" className="text-label-uppercase">
             Link Original
           </label>
           <input
@@ -54,7 +54,7 @@ export function LinkForm({ onLinkCreated }: LinkFormProps) {
         </div>
 
         <div className="form-group">
-          <label htmlFor="shortCode">
+          <label htmlFor="shortCode" className="text-label-uppercase">
             Link encurtado
           </label>
           <div className="form-row">
@@ -87,7 +87,7 @@ export function LinkForm({ onLinkCreated }: LinkFormProps) {
             </>
           ) : (
             <>
-              Salvar
+              Salvar link
             </>
           )}
         </button>
