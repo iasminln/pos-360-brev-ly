@@ -35,6 +35,9 @@ li {
   max-width: 1200px;
   margin: 0 auto;
   padding: 5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main-content {
@@ -69,6 +72,16 @@ li {
   flex-direction: column;
 }
 
+.card-redirect {
+  max-width: 580px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
 .link-list-header {
   display: flex;
   align-items: center;
@@ -77,9 +90,31 @@ li {
 }
 
 .card h2 {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #1f2937;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1F2025;
+}
+
+.card-redirect h2 {
+  font-size: 24px;
+}
+
+.card-redirect p {
+  font-size: 14px;
+  color: #4D505C;
+  font-weight: 600;
+  margin: 0;
+  line-height: 20px;
+  text-align: center;
+}
+
+.card-redirect a {
+  color: #2C46B1;
+}
+
+.logo-redirect-container img {
+  display: block;
+  max-width: 100%;
 }
 
 .form-group {
@@ -224,7 +259,7 @@ li {
 .link-left {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 4px;
 }
 
 .link-right {

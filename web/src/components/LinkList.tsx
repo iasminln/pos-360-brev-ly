@@ -4,6 +4,9 @@ import { linkService } from '../services/api';
 import type { Link } from '../types/link';
 import { IconDownload } from '../icons/icon-download';
 import { IconLink } from '../icons/icon-link';
+import { env } from '../env';
+
+const frontendUrl = env.VITE_FRONTEND_URL;
 
 export function LinkList() {
   const [links, setLinks] = useState<Link[]>([]);
@@ -43,7 +46,7 @@ export function LinkList() {
   };
 
   const handleCopy = (shortCode: string) => {
-    const shortUrl = linkService.getShortUrl(shortCode);
+    const shortUrl = `${frontendUrl}/${shortCode}`;
     navigator.clipboard.writeText(shortUrl);
     alert('Link copiado para a área de transferência!');
   };
@@ -100,7 +103,7 @@ export function LinkList() {
         <div className="empty-state">
           <p className="error-message">{error}</p>
           <button
-            onClick={loadLinks}
+            onClick={() => loadLinks()}
             className="btn btn-primary"
           >
             Tentar Novamente
@@ -132,8 +135,8 @@ export function LinkList() {
         {links.map((link) => (
           <div key={link.id} className="link-item">
             <div className="link-left">
-              <a href={linkService.getShortUrl(link.shortCode)} className="link-code" target="_blank">
-                {linkService.getShortUrl(link.shortCode)}
+              <a href={`/${link.shortCode}`} className="link-code" target="_blank">
+                {`${frontendUrl}/${link.shortCode}`}
               </a>
               <a href={link.originalUrl} className="link-url" target="_blank">
                 {link.originalUrl}
@@ -142,7 +145,7 @@ export function LinkList() {
 
             <div className="link-right">
               <span className="link-stats">
-                {link.accessCount} acessos
+                {link.clickCount} acessos
               </span>
               <div className="link-actions">
                 <button
