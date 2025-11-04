@@ -1,4 +1,5 @@
 export interface Link {
+  clickCount: number;
   id: string;
   originalUrl: string;
   shortCode: string;
