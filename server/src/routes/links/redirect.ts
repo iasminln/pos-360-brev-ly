@@ -1,7 +1,7 @@
 import { FastifyInstance } from 'fastify';
 import { db } from '../../database/index';
 import { schema } from '../../database/schemas';
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 
 export const redirectRoute = async (server: FastifyInstance) => {
   server.get('/:shortCode', async (request, reply) => {
@@ -22,16 +22,14 @@ export const redirectRoute = async (server: FastifyInstance) => {
       await db
         .update(schema.uploads)
         .set({
-          createdAt: new Date()
+          clickCount: sql`click_count + 1`
         })
         .where(eq(schema.uploads.id, foundLink.id));
 
-      return reply.redirect(foundLink.originalUrl);
+      return reply.send({ originalUrl: foundLink.originalUrl, clickCount: foundLink.clickCount });
     } catch (error) {
       server.log.error(error);
       return reply.status(500).send({ error: 'Erro interno do servidor' });
     }
   });
-}
-
-
+};
