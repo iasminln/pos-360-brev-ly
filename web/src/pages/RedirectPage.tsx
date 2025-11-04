@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { env } from '../env';
-import logoRedirect from '../public/logo-redirect.png';
+import logoRedirect from '../public/images/logo-redirect.png';
 
 export function RedirectPage() {
   const { shortCode } = useParams<{ shortCode: string }>();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
   const [targetUrl, setTargetUrl] = useState<string | null>(null);
 
   useEffect(() => {
@@ -25,14 +24,10 @@ export function RedirectPage() {
         }, 1000);
       } catch {
         navigate('/404');
-      } finally {
-        setLoading(false);
       }
     }
     fetchUrl();
   }, [shortCode, navigate]);
-
-  if (loading) return <p>Carregando...</p>;
 
   if (!targetUrl) return null;
 
@@ -41,7 +36,10 @@ export function RedirectPage() {
       <main className="main">
         <div className="card card-redirect">
           <div className="logo-redirect-container"><img src={logoRedirect} alt="Brev.ly" /></div>
-          <h2>Redirecionando...</h2>
+          <div className="redirect-loading">
+            <h2>Redirecionando...</h2>
+            <div className="redirect-spinner"></div>
+          </div>
           <div className="redirect-message-container">
             <p>O link será aberto automaticamente em alguns instantes. </p>
             <p>Não foi redirecionado? <a href={targetUrl} target="_blank">Acesse aqui</a></p>

@@ -35,8 +35,9 @@ export function LinkForm({ onLinkCreated }: LinkFormProps) {
 
   return (
     <div className="card">
-      <h2>Novo link</h2>
-
+      <div className="card-header">
+        <h2>Novo link</h2>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="originalUrl" className="text-label-uppercase">
@@ -57,14 +58,14 @@ export function LinkForm({ onLinkCreated }: LinkFormProps) {
           <label htmlFor="shortCode" className="text-label-uppercase">
             Link encurtado
           </label>
-          <div className="form-row">
+          <div className="input-with-prefix">
+            <span className="input-prefix">brev.ly/</span>
             <input
               type="text"
               id="shortCode"
               value={formData.shortCode}
               onChange={(e) => setFormData(prev => ({ ...prev, shortCode: e.target.value }))}
-              placeholder="Digite o código desejado (opcional)"
-              className="form-input"
+              className="form-input input-with-prefix-input"
             />
           </div>
         </div>
