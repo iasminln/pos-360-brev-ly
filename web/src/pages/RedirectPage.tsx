@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { env } from '../env';
 import logoRedirect from '../public/logo-redirect.png';
 
 export function RedirectPage() {
   const { shortCode } = useParams<{ shortCode: string }>();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [targetUrl, setTargetUrl] = useState<string | null>(null);
 
@@ -12,25 +13,28 @@ export function RedirectPage() {
     async function fetchUrl() {
       try {
         const res = await fetch(`${env.VITE_BACKEND_URL}/${shortCode}`);
-        if (!res.ok) throw new Error('Link não encontrado');
+        if (!res.ok) {
+          navigate('/404');
+          return;
+        }
         const data = await res.json();
         setTargetUrl(data.originalUrl);
 
-        // setTimeout(() => {
-        //   window.location.href = data.originalUrl;
-        // }, 1500);
-      } catch (err) {
-        setTargetUrl(null);
+        setTimeout(() => {
+          window.location.href = data.originalUrl;
+        }, 1000);
+      } catch {
+        navigate('/404');
       } finally {
         setLoading(false);
       }
     }
     fetchUrl();
-  }, [shortCode]);
+  }, [shortCode, navigate]);
 
   if (loading) return <p>Carregando...</p>;
 
-  if (!targetUrl) return <p>Link não encontrado 😢</p>;
+  if (!targetUrl) return null;
 
   return (
     <div className="app">
