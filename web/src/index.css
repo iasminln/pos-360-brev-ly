@@ -56,7 +56,7 @@ li {
 .main {
   max-width: 980px;
   margin: 0 auto;
-  padding: 5rem 1.5rem;
+  padding: 80px 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,7 +113,7 @@ li {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
 }
 
 .card h2 {
@@ -180,7 +180,7 @@ li {
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
 }
 
 .text-label-uppercase {
@@ -257,7 +257,7 @@ li {
 
 .form-row {
   display: flex;
-  gap: 0.5rem;
+  gap: 8px;
 }
 
 .form-row .form-input {
@@ -268,11 +268,11 @@ li {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  gap: 8px;
+  padding: 8px 16px;
   border: none;
-  border-radius: 0.375rem;
-  font-size: 1rem;
+  border-radius: 6px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease-in-out;
@@ -316,24 +316,24 @@ li {
 }
 
 .error-message {
-  color: #dc2626;
-  font-size: 0.875rem;
-  background-color: #fef2f2;
-  padding: 0.75rem;
-  border-radius: 0.375rem;
-  margin-top: 0.5rem;
+  color: #4D505C;
+  font-size: 12px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .loading {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 32px;
 }
 
 .spinner {
-  width: 1rem;
-  height: 1rem;
+  width: 16px;
+  height: 16px;
   border: 2px solid #e5e7eb;
   border-top: 2px solid #3b82f6;
   border-radius: 50%;
@@ -353,19 +353,19 @@ li {
 .link-item {
   border-top: 1px solid #E4E6EC;
   padding: 16px 0;
-  gap: 2rem;
+  gap: 32px;
   align-items: start;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
+  gap: 16px;
 }
 
 .link-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 32px;
   align-items: start;
 }
 
@@ -379,15 +379,15 @@ li {
 
 .link-right {
   display: flex;
-  gap: 0.5rem;
+  gap: 8px;
   align-items: center;
 }
 
 .link-header {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 
 .link-code {
@@ -402,7 +402,7 @@ li {
 }
 
 .link-stats {
-  font-size: 0.875rem;
+  font-size: 14px;
   color: #6b7280;
   font-weight: 600;
 }
@@ -422,16 +422,16 @@ li {
 .link-actions {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
 }
 
 .action-btn {
-  padding: 0.5rem;
+  padding: 8px;
   border: none;
   background: #E4E6EC;
   color: #6b7280;
   cursor: pointer;
-  border-radius: 0.25rem;
+  border-radius: 4px;
   transition: all 0.15s ease-in-out;
   width: 32px;
   height: 32px;
@@ -499,11 +499,11 @@ li {
 
 @media (max-width: 768px) {
   .main {
-    padding: 2rem 1.5rem;
+    padding: 32px 24px;
   }
 
   .main-content {
-    gap: 1.5rem;
+    gap: 24px;
   }
 
   .header {
@@ -511,7 +511,7 @@ li {
   }
 
   .card {
-    padding: 1rem;
+    padding: 16px;
     max-height: 45dvh;
   }
 
@@ -520,13 +520,13 @@ li {
   }
 
   .link-item {
-    padding: 0.75rem;
+    padding: 12px;
     grid-template-columns: 1fr;
   }
 
   .link-content {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 16px;
   }
 
   .link-right {
@@ -534,7 +534,7 @@ li {
   }
 
   .link-actions {
-    margin-top: 0.5rem;
+    margin-top: 8px;
   }
 
   .toast {

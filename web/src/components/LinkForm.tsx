@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { linkService } from '../services/api';
 import type { CreateLinkRequest } from '../types/link';
+import { IconWarning } from '../icons/icon-warning';
 
 interface LinkFormProps {
   onLinkCreated: () => void;
@@ -10,7 +11,21 @@ export function LinkForm({ onLinkCreated }: LinkFormProps) {
   const [formData, setFormData] = useState<CreateLinkRequest>({ originalUrl: '', shortCode: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [shortCodeError, setShortCodeError] = useState<string | null>(null);
 
+  const handleShortCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    
+    const filteredValue = value.replace(/[^a-zA-Z0-9_-]/g, '');
+    
+    if (value !== filteredValue) {
+      setShortCodeError('O código só pode conter letras, números, hífen (-) e underscore (_)');
+    } else {
+      setShortCodeError(null);
+    }
+    
+    setFormData(prev => ({ ...prev, shortCode: filteredValue }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,17 +33,15 @@ export function LinkForm({ onLinkCreated }: LinkFormProps) {
     setError(null);
 
     try {
-      const response = await linkService.createLink(formData);
-      console.log("link criado", formData);
-      console.log("response", response);
+      await linkService.createLink(formData);
       setFormData({ originalUrl: '', shortCode: '' });
+      setShortCodeError(null);
       onLinkCreated();
     } catch (err) {
       console.log("error", err);
       const errorMessage = (err as { response?: { data?: { error?: string } } })?.response?.data?.error || 'Erro ao criar link';
       setError(errorMessage);
     } finally {
-      console.log("finally");
       setIsLoading(false);
     }
   };
@@ -64,14 +77,21 @@ export function LinkForm({ onLinkCreated }: LinkFormProps) {
               type="text"
               id="shortCode"
               value={formData.shortCode}
-              onChange={(e) => setFormData(prev => ({ ...prev, shortCode: e.target.value }))}
+              onChange={handleShortCodeChange}
               className="form-input input-with-prefix-input"
             />
           </div>
+          {shortCodeError && (
+            <div className="error-message">
+              <IconWarning size={14} color="#B12C4D" />
+              {shortCodeError}
+            </div>
+          )}
         </div>
 
         {error && (
           <div className="error-message">
+            <IconWarning size={14} color="#B12C4D" />
             {error}
           </div>
         )}
