@@ -20,17 +20,14 @@ export const exportToCsvRoute = async (server: FastifyInstance) => {
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
       const fileName = `links-export-${timestamp}.csv`;
 
-      // Faz upload para R2
       await uploadFileToR2(fileName, csvContent, 'text/csv; charset=utf-8');
 
-      // Tenta obter URL pública, caso contrário gera URL assinada
       const publicUrl = getPublicUrl(fileName);
       let downloadUrl: string;
 
       if (publicUrl) {
         downloadUrl = publicUrl;
       } else {
-        // Gera URL assinada válida por 1 hora
         downloadUrl = await getSignedUrlForFile(fileName, 3600);
       }
 
