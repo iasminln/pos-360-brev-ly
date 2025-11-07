@@ -13,9 +13,23 @@ const frontendUrl = env.VITE_FRONTEND_URL;
 
 export function LinkList() {
   const [links, setLinks] = useState<Link[]>([]);
+  const [accessCount, setAccessCount] = useState<Array<{ shortCode: string; clickCount: number }>>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { showToast, toast, hideToast } = useToast();
+
+  useEffect(() => {
+    const eventSource = new EventSource(`${env.VITE_BACKEND_URL}/events`);
+  
+    eventSource.onopen = () => console.log('🟢 Conectado ao servidor SSE');
+    eventSource.onmessage = (event) => {
+      const updatedLinks = JSON.parse(event.data);
+      setAccessCount(updatedLinks);
+    };
+    eventSource.onerror = (err) => console.error('🔴 Erro SSE:', err);
+  
+    return () => eventSource.close();
+  }, []);
 
   const loadLinks = async () => {
     try {
@@ -128,8 +142,6 @@ export function LinkList() {
     );
   }
 
-  console.log(links);
-
   return (
     <>
       {toast && (
@@ -139,7 +151,7 @@ export function LinkList() {
         <ListLinksHeader />
 
         <div className="link-list-container">
-          {links.map((link) => (
+          {links.slice().reverse().map((link) => (
             <div key={link.id} className="link-item">
               <div className="link-left">
                 <a href={`/${link.shortCode}`} className="link-code" target="_blank">
@@ -152,7 +164,9 @@ export function LinkList() {
 
               <div className="link-right">
                 <span className="link-stats">
-                  {link.clickCount} acessos
+                  <span className="link-stats">
+                    {accessCount.find(item => item.shortCode === link.shortCode)?.clickCount ?? 0} acessos
+                  </span>
                 </span>
                 <div className="link-actions">
                   <button

@@ -15,8 +15,6 @@ const api = axios.create({
 export const linkService = {
   async createLink(data: CreateLinkRequest): Promise<CreateLinkResponse> {
     const response = await api.post<CreateLinkResponse>('/links', data);
-
-    console.log("response", response.data);
     return response.data;
   },
 
