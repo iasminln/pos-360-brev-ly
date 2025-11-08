@@ -22,7 +22,7 @@
 - [x]  Deve ser possível obter a URL original por meio do encurtamento
 - [x]  Deve ser possível listar todas as URL's cadastradas
 - [x]  Deve ser possível incrementar a quantidade de acessos de um link
-- [ ]  Deve ser possível baixar um CSV com o relatório dos links criados
+- [x]  Deve ser possível baixar um CSV com o relatório dos links criados
 
 ## Regras do Frontend
 - [x]  É obrigatória a criação de uma aplicação React no formato SPA utilizando o Vite como `bundler`;
