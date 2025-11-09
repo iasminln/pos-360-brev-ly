@@ -19,8 +19,6 @@ server.setErrorHandler((error, _request, reply) => {
   return reply.status(500).send({ error: "Internal Server Error" });
 });
 
-console.log(env.DATABASE_URL);
-
 server.register(fastifyCors, {
   origin: "*",
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
