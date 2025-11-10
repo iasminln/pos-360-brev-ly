@@ -1,6 +1,15 @@
-# 📋 Funcionalidades
+# Atividade desenvolvida para Pós Gradução Full Stack da Rocketseat
 
-## Backend (Server)
+📌 Essa atividade foi publicada e pode ser visualizada em: [brevly.iasmin.dev](https://brevly.iasmin.dev).
+
+**Frontend:** Vercel</br>
+**Backend:** AWS App Runner</br>
+**Danco de dados:** Neon Console</br>
+
+
+## 📋 Funcionalidades
+
+### Backend (Server)
 - [x]  Deve ser possível criar um link
     - [x]  Não deve ser possível criar um link com URL encurtada mal formatada
     - [x]  Não deve ser possível criar um link com URL encurtada já existente
@@ -14,7 +23,7 @@
     - [x]  Deve ser possível realizar a listagem de forma performática
     - [x]  O CSV deve ter campos como, URL original, URL encurtada, contagem de acessos e data de criação.
 
-## Frontend (Web) 
+### Frontend (Web) 
 - [x]  Deve ser possível criar um link
     - [x]  Não deve ser possível criar um link com encurtamento mal formatado
     - [x]  Não deve ser possível criar um link com encurtamento já existente
@@ -24,7 +33,7 @@
 - [x]  Deve ser possível incrementar a quantidade de acessos de um link
 - [x]  Deve ser possível baixar um CSV com o relatório dos links criados
 
-## Regras do Frontend
+### Regras do Frontend
 - [x]  É obrigatória a criação de uma aplicação React no formato SPA utilizando o Vite como `bundler`;
 - [x]  Siga o mais fielmente possível o layout do Figma;
 - [x]  Trabalhe com elementos que tragam uma boa experiência ao usuário (`empty state`, ícones de carregamento, bloqueio de ações a depender do estado da aplicação);
