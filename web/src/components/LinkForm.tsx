@@ -12,6 +12,7 @@ export function LinkForm({ onLinkCreated }: LinkFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [shortCodeError, setShortCodeError] = useState<string | null>(null);
+  const [urlError, setUrlError] = useState<string | null>(null);
 
   const handleShortCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -27,15 +28,34 @@ export function LinkForm({ onLinkCreated }: LinkFormProps) {
     setFormData(prev => ({ ...prev, shortCode: filteredValue }));
   };
 
+  const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setFormData(prev => ({ ...prev, originalUrl: value }));
+    
+    if (value && !value.match(/^https?:\/\//i)) {
+      setUrlError('O link deve começar com http:// ou https://');
+    } else {
+      setUrlError(null);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (formData.originalUrl && !formData.originalUrl.match(/^https?:\/\//i)) {
+      setUrlError('O link deve começar com http:// ou https://');
+      return;
+    }
+    
     setIsLoading(true);
     setError(null);
+    setUrlError(null);
 
     try {
       await linkService.createLink(formData);
       setFormData({ originalUrl: '', shortCode: '' });
       setShortCodeError(null);
+      setUrlError(null);
       onLinkCreated();
     } catch (err) {
       console.log("error", err);
@@ -60,11 +80,16 @@ export function LinkForm({ onLinkCreated }: LinkFormProps) {
             type="url"
             id="originalUrl"
             value={formData.originalUrl}
-            onChange={(e) => setFormData(prev => ({ ...prev, originalUrl: e.target.value }))}
+            onChange={handleUrlChange}
             placeholder="https://exemplo.com"
             className="form-input"
-            required
           />
+          {urlError && (
+            <div className="error-message">
+              <IconWarning size={14} color="#B12C4D" />
+              {urlError}
+            </div>
+          )}
         </div>
 
         <div className="form-group">
