@@ -3,8 +3,10 @@ import { LinkForm } from '../components/LinkForm';
 import { LinkList } from '../components/LinkList';
 import logoBrevLy from '../assets/images/logo-brev-ly.svg';
 import { Footer } from '../components/Footer';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export function Home() {
+  useDocumentTitle('Brev.ly - Encurtador de Links');
   const [refreshKey, setRefreshKey] = useState(0);
 
   const handleLinkCreated = () => {

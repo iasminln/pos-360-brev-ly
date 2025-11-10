@@ -1,6 +1,8 @@
 import image404 from '../assets/images/404.png';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export function NotFound() {
+  useDocumentTitle('Link não encontrado - Brev.ly');
   return (
     <div className="app">
       <main className="main">

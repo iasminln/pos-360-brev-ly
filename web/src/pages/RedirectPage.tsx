@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { env } from '../env';
 import logoRedirect from '../assets/images/logo-redirect.png';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export function RedirectPage() {
+  useDocumentTitle('Redirecionando... - Brev.ly');
   const { shortCode } = useParams<{ shortCode: string }>();
   const navigate = useNavigate();
   const [targetUrl, setTargetUrl] = useState<string | null>(null);
