@@ -14,7 +14,7 @@
     - [x]  Deve ser possível realizar a listagem de forma performática
     - [x]  O CSV deve ter campos como, URL original, URL encurtada, contagem de acessos e data de criação.
 
-## Frontend (Web)
+## Frontend (Web) 
 - [x]  Deve ser possível criar um link
     - [x]  Não deve ser possível criar um link com encurtamento mal formatado
     - [x]  Não deve ser possível criar um link com encurtamento já existente
