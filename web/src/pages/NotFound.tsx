@@ -1,4 +1,4 @@
-import image404 from '../public/images/404.png';
+import image404 from '../assets/images/404.png';
 
 export function NotFound() {
   return (

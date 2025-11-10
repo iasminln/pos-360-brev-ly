@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { env } from '../env';
-import logoRedirect from '../public/images/logo-redirect.png';
+import logoRedirect from '../assets/images/logo-redirect.png';
 
 export function RedirectPage() {
   const { shortCode } = useParams<{ shortCode: string }>();
