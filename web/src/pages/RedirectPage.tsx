@@ -19,9 +19,9 @@ export function RedirectPage() {
         const data = await res.json();
         setTargetUrl(data.originalUrl);
 
-        // setTimeout(() => {
-        //   window.location.href = data.originalUrl;
-        // }, 1000);
+        setTimeout(() => {
+          window.location.href = data.originalUrl;
+        }, 1000);
       } catch {
         navigate('/404');
       }
