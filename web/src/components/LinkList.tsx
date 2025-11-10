@@ -154,7 +154,7 @@ export function LinkList() {
           {links.slice().reverse().map((link) => (
             <div key={link.id} className="link-item">
               <div className="link-left">
-                <a href={`/${link.shortCode}`} className="link-code" target="_blank">
+                <a href={`${frontendUrl}/${link.shortCode}`} className="link-code" target="_blank">
                   {`${frontendUrl}/${link.shortCode}`}
                 </a>
                 <a href={link.originalUrl} className="link-url" target="_blank">
