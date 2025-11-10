@@ -6,6 +6,7 @@ import { redirectRoute } from './links/redirect';
 import { deleteLinkRoute } from './links/deleteLink';
 import { exportToCsvRoute } from './links/exportToCsv';
 import { eventsRoute } from './links/events';
+import { healthRoute } from './links/health';
 
 export const registerRoutes = async (server: FastifyInstance) => {
   await createLinkRoute(server);
@@ -15,4 +16,5 @@ export const registerRoutes = async (server: FastifyInstance) => {
   await deleteLinkRoute(server);
   await exportToCsvRoute(server);
   await eventsRoute(server);
+  await healthRoute(server);
 }
