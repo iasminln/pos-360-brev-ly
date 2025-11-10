@@ -19,9 +19,9 @@ export function RedirectPage() {
         const data = await res.json();
         setTargetUrl(data.originalUrl);
 
-        setTimeout(() => {
-          window.location.href = data.originalUrl;
-        }, 1000);
+        // setTimeout(() => {
+        //   window.location.href = data.originalUrl;
+        // }, 1000);
       } catch {
         navigate('/404');
       }
@@ -34,15 +34,17 @@ export function RedirectPage() {
   return (
     <div className="app">
       <main className="main">
-        <div className="card card-redirect">
-          <div className="logo-redirect-container"><img src={logoRedirect} alt="Brev.ly" /></div>
-          <div className="redirect-loading">
-            <h2>Redirecionando...</h2>
-            <div className="redirect-spinner"></div>
-          </div>
-          <div className="redirect-message-container">
-            <p>O link será aberto automaticamente em alguns instantes. </p>
-            <p>Não foi redirecionado? <a href={targetUrl} target="_blank">Acesse aqui</a></p>
+        <div className="main-container">
+          <div className="card card-redirect">
+            <div className="logo-redirect-container"><img src={logoRedirect} alt="Brev.ly" /></div>
+            <div className="redirect-loading">
+              <h2>Redirecionando...</h2>
+              <div className="redirect-spinner"></div>
+            </div>
+            <div className="redirect-message-container">
+              <p>O link será aberto automaticamente em alguns instantes. </p>
+              <p>Não foi redirecionado? <a href={targetUrl} target="_blank">Acesse aqui</a></p>
+            </div>
           </div>
         </div>
       </main>
