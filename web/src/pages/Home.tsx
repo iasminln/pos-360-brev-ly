@@ -14,14 +14,16 @@ export function Home() {
   return (
     <div className="app">
       <main className="main">
-        <div className="header">
-          <img src={logoBrevLy} alt="Brev.ly" className="logo" />
+        <div className="main-container">
+          <div className="header">
+            <img src={logoBrevLy} alt="Brev.ly" className="logo" />
+          </div>
+          <div className="main-content">
+            <LinkForm onLinkCreated={handleLinkCreated} />
+            <LinkList key={refreshKey} />
+          </div>
         </div>
-        <div className="main-content">
-          <LinkForm onLinkCreated={handleLinkCreated} />
-          <LinkList key={refreshKey} />
-          <Footer />
-        </div>
+        <Footer />
       </main>
     </div>
   );
