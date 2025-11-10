@@ -1,7 +1,6 @@
 import { fastify } from "fastify";
 import { fastifyCors } from "@fastify/cors";
 import { registerRoutes } from './routes';
-import { env } from './env';
 import { serializerCompiler, validatorCompiler, hasZodFastifySchemaValidationErrors } from 'fastify-type-provider-zod';
 
 
@@ -12,6 +11,7 @@ server.setSerializerCompiler(serializerCompiler);
 
 
 server.setErrorHandler((error, _request, reply) => {
+  console.error(error);
   if (hasZodFastifySchemaValidationErrors(error)) {
     return reply.status(400).send({ message: 'Validation error', issues: error.validation });
   }
