@@ -1,6 +1,6 @@
 # Atividade desenvolvida para Pós Gradução Full Stack da Rocketseat
 
-📌 Essa atividade foi publicada e pode ser visualizada em: [brevly.iasmin.dev](https://brevly.iasmin.dev).
+📌 Essa atividade foi publicada e pode ser visualizada em: [brevly.iasmin.dev](https://brevly.iasmin.dev/bv).
 
 **Frontend:** Vercel</br>
 **Backend:** AWS App Runner</br>
